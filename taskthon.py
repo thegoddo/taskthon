@@ -1,5 +1,6 @@
 from argparse import ArgumentParser
 import json
+from tabulate import tabulate
 import os
 from datetime import datetime
 from pathlib import Path
@@ -43,7 +44,7 @@ def main():
 
             initial_length = len(tasks)
 
-            tasks = [for task in tasks if task['id'] != task_id_to_delete]
+            tasks = [task for task in tasks if task['id'] != task_id_to_delete]
 
             if len(tasks) < initial_length:
                 save_tasks(db_path, tasks)
@@ -51,8 +52,7 @@ def main():
             else:
                 print(f'Error: Task ID {task_id_to_delete} is not found.')
         case 'list':
-            for task in tasks:
-
+            display_list(args.d_type, tasks)
         case 'status':
             current_time = get_timestamp()
             task_id_to_change = args.id
@@ -66,6 +66,33 @@ def main():
                 else:
                     print(f'Error: Task ID {task_id_to_change} is not found.')
         case _:
+
+
+
+def display_list(d_type: str, tasks: list):
+
+    if not tasks:
+        print("No task found!!!")
+        return
+
+    headers = ["ID", "Status", "Description", "Create At", "Update At"]
+    table_date = []
+    new_tasks = [task for task in tasks if task['status'] != d_type]
+
+    for task in new_tasks:
+        create_at_short = task.get("createdAt", "").replace("T", "")
+        update_at_short = task.get("updateAt", "").replace("T", "")
+
+        table_date.append([
+            task.get("id"),
+            task.get("status").capitalize(),
+            task.get("description"),
+            create_at_short,
+            update_at_short
+        ])
+
+        print(tabulate(table_date, headers, tablefmt="fancy_grid"))
+
 
 
 def get_timestamp() -> str:
@@ -135,6 +162,11 @@ def args_parser():
     )
 
     list_parser = subparsers.add_parser('list', help='List all tasks.')
+    list_parser.add_argument(
+        'd_type',
+        choices=['all', 'done', 'in-progress', 'pending'],
+        help="The type of task you want to list."
+    )
 
     mark = subparsers.add_parser('status', help='Update status.')
     mark.add_argument(
