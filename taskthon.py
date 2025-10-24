@@ -66,6 +66,7 @@ def main():
                 else:
                     print(f'Error: Task ID {task_id_to_change} is not found.')
         case _:
+            print(f'Error: Something went Wrong!!!')
 
 
 
