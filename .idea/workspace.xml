@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="52c8804b-de37-4125-9ba5-13ad94f61406" name="Changes" comment="add .gitignore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskthon.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskthon.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

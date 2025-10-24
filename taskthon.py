@@ -1,6 +1,39 @@
-import os
 from argparse import ArgumentParser
+import json
+import os
+from pathlib import Path
 
+
+def main():
+    args = args_parser()
+    db_path = Path(args.db).expanduser()
+    tasks = load_tasks(db_path)
+
+    match args.command:
+        case 'add':
+            new_id = len(tasks) + 1
+
+        case 'update':
+            break
+        case 'delete':
+        case 'list':
+        case 'mark-in-progress':
+        case 'mark-done':
+        case _:
+
+
+
+def load_tasks(db_path: Path) -> list:
+
+    if not db_path.exists() or db_path.stat().st_size == 0:
+        return []
+
+    try:
+        with open(db_path, 'r') as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        print(f'Error: Database file at {db_path} contains invalid JSON.')
+        return []
 
 def args_parser():
 
@@ -66,3 +99,6 @@ def args_parser():
     args = parser.parse_args()
 
     return args
+
+if __name__=='__main__':
+    main()
