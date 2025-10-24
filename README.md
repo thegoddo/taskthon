@@ -13,12 +13,7 @@ A lightweight Terminal TODO written in python without any database.
  - an accessible linux terminal
  - Python package tabulate (Install using pip)
 
----
 
-```text
-- pip install tabulate
-- Install Python (Version >= 3.10.*)
-```
 
 
 ## Clone this project
@@ -46,15 +41,14 @@ cd taskthon
 - [x] Task status
 - [x] Listing tasks
 - [x] Storing tasks
-:w
-- 
+
 ## Contributing to this project
 
 ---
  1. Fork this repository.
 2. Create a new branch: ```git checkout -b <branch_name>```
 3. Make your changes and commit them: ```git commit -am '<commit_message>'```
-4. Push your changes to original branch: ```git push origin main```
+4. Push your changes to original branch: ```git push origin master```
 5. Create a pull request.
 
 Alternatively see the GitHub documentation on [creating a pull request.](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)
@@ -63,4 +57,4 @@ Alternatively see the GitHub documentation on [creating a pull request.](https:/
 
 --- 
 
-This is a project from [Roadmap](https://www.roadmap.sh). Click this [link](https://www.roadmap.sh/projects/task-tracker) to checkout this project.
+This is a project from [Roadmap](https://www.roadmap.sh). Click this [link](https://roadmap.sh/projects/task-tracker) to checkout this project.
