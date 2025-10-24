@@ -2,7 +2,7 @@ import os
 from argparse import ArgumentParser
 
 
-def main():
+def args_parser():
 
     parser = ArgumentParser(
         description="Taskthon is a CLI todo tool to manage your todo tasks from the convenient of your terminal.",
@@ -26,7 +26,7 @@ def main():
     # Update command
     update_parser = subparsers.add_parser('update', help='Update an existing task.')
     update_parser.add_argument(
-        'ID',
+        'id',
         type=int,
         help='The ID of the task to update.'
     )
@@ -47,4 +47,22 @@ def main():
 
     list_parser = subparsers.add_parser('list', help='List all tasks.')
 
+    # Status update to 'In Progress'
+    mark_in_progress = subparsers.add_parser('mark-in-progress', help='Change status to "In Progress"')
+    mark_in_progress.add_argument(
+        'id',
+        type=int,
+        help='The ID of the task to update status'
+    )
+
+    # Status update to 'Done'
+    mark_in_done = subparsers.add_parser('mark-in-done', help='Change status to "Done"')
+    mark_in_done.add_argument(
+        'id',
+        type=int,
+        help='The ID of the task to update status'
+    )
+
     args = parser.parse_args()
+
+    return args
