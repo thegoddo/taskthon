@@ -4,6 +4,8 @@
 
 A lightweight Terminal TODO written in python without any database.
 
+![Project help page](./pro_ss.png "project screenshot")
+
 ## Prerequisites
 
 ---
