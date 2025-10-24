@@ -38,6 +38,14 @@ def main():
 def get_timestamp() -> str:
     return datetime.now().isoformat()
 
+def save_tasks(db_path: Path, tasks: list):
+
+    # Make sure the directory exists
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(db_path, 'w') as f:
+        json.dump(tasks, f, indent=4)
+
 def load_tasks(db_path: Path) -> list:
 
     if not db_path.exists() or db_path.stat().st_size == 0:
