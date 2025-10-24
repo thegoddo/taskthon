@@ -39,8 +39,7 @@ cd taskthon
 - [x] Task status
 - [x] Listing tasks
 - [x] Storing tasks
-:w
-- 
+
 ## Contributing to this project
 
 ---
