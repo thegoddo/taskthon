@@ -1,7 +1,6 @@
 from argparse import ArgumentParser
 import json
 from tabulate import tabulate
-import os
 from datetime import datetime
 from pathlib import Path
 
@@ -81,7 +80,7 @@ def display_list(d_type: str, tasks: list):
     new_tasks = [task for task in tasks if task['status'] != d_type]
 
     for task in new_tasks:
-        create_at_short = task.get("createdAt", "").replace("T", "")
+        create_at_short = task.get("createAt", "").replace("T", "")
         update_at_short = task.get("updateAt", "").replace("T", "")
 
         table_date.append([
