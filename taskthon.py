@@ -51,26 +51,36 @@ def main():
             else:
                 print(f'Error: Task ID {task_id_to_delete} is not found.')
         case 'list':
-        case 'mark-in-progress':
             for task in tasks:
-                if task['mark-in'] =
-        case 'mark-done':
+
+        case 'status':
+            current_time = get_timestamp()
+            task_id_to_change = args.id
+            for task in tasks:
+                if task[id] == task_id_to_change:
+                    task['status'] = args.new_status
+                    task['updateAt'] = current_time
+                    save_tasks(db_path, tasks)
+                    print(f'Task with ID {task_id_to_change} status updated successfully.')
+                    break
+                else:
+                    print(f'Error: Task ID {task_id_to_change} is not found.')
         case _:
 
 
 def get_timestamp() -> str:
     return datetime.now().isoformat()
 
-def save_tasks(db_path: Path, tasks: list):
 
+def save_tasks(db_path: Path, tasks: list):
     # Make sure the directory exists
     db_path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(db_path, 'w') as f:
         json.dump(tasks, f, indent=4)
 
-def load_tasks(db_path: Path) -> list:
 
+def load_tasks(db_path: Path) -> list:
     if not db_path.exists() or db_path.stat().st_size == 0:
         return []
 
@@ -81,8 +91,8 @@ def load_tasks(db_path: Path) -> list:
         print(f'Error: Database file at {db_path} contains invalid JSON.')
         return []
 
-def args_parser():
 
+def args_parser():
     parser = ArgumentParser(
         description="Taskthon is a CLI todo tool to manage your todo tasks from the convenient of your terminal.",
     )
@@ -143,5 +153,6 @@ def args_parser():
 
     return args
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     main()
