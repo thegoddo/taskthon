@@ -18,6 +18,7 @@ def main():
             new_task = {
                 'id': new_id,
                 'description': args.description,
+                'status': 'pending',
                 'createAt': current_time,
                 'updateAt': current_time
             }
@@ -27,10 +28,32 @@ def main():
             print(f'Task added with ID: {new_id}')
 
         case 'update':
-            break
+            current_time = get_timestamp()
+            for task in tasks:
+                if task['id'] == args.id:
+                    task['description'] = args.new_description
+                    task['updateAt'] = current_time
+                    save_tasks(db_path, tasks)
+                    print(f'Tasks {args.id} updated')
+                    break
+                else:
+                    print(f'Error: Task ID {args.id} not found.')
         case 'delete':
+            task_id_to_delete = args.id
+
+            initial_length = len(tasks)
+
+            tasks = [for task in tasks if task['id'] != task_id_to_delete]
+
+            if len(tasks) < initial_length:
+                save_tasks(db_path, tasks)
+                print(f'Task with ID {task_id_to_delete} is deleted successfully.')
+            else:
+                print(f'Error: Task ID {task_id_to_delete} is not found.')
         case 'list':
         case 'mark-in-progress':
+            for task in tasks:
+                if task['mark-in'] =
         case 'mark-done':
         case _:
 
@@ -103,20 +126,17 @@ def args_parser():
 
     list_parser = subparsers.add_parser('list', help='List all tasks.')
 
-    # Status update to 'In Progress'
-    mark_in_progress = subparsers.add_parser('mark-in-progress', help='Change status to "In Progress"')
-    mark_in_progress.add_argument(
+    mark = subparsers.add_parser('status', help='Update status.')
+    mark.add_argument(
         'id',
         type=int,
-        help='The ID of the task to update status'
+        help='The ID to update todo status.'
     )
 
-    # Status update to 'Done'
-    mark_in_done = subparsers.add_parser('mark-in-done', help='Change status to "Done"')
-    mark_in_done.add_argument(
-        'id',
-        type=int,
-        help='The ID of the task to update status'
+    mark.add_argument(
+        'new_status',
+        choices=['pending', 'in-progress', 'done'],
+        help="The new status (e.g., pending, in-progress, done)."
     )
 
     args = parser.parse_args()
