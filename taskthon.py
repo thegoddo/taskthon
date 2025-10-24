@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 import json
 import os
+from datetime import datetime
 from pathlib import Path
 
 
@@ -22,6 +23,8 @@ def main():
         case _:
 
 
+def get_timestamp() -> str:
+    return datetime.now().isoformat()
 
 def load_tasks(db_path: Path) -> list:
 
