@@ -11,12 +11,7 @@ A lightweight Terminal TODO written in python without any database.
  - an accessible linux terminal
  - Python package tabulate (Install using pip)
 
----
 
-```text
-- pip install tabulate
-- Install Python (Version >= 3.10.*)
-```
 
 
 ## Clone this project
