@@ -164,7 +164,7 @@ def args_parser():
 
     list_parser = subparsers.add_parser('list', help='List all tasks.')
     list_parser.add_argument(
-        'd_type',
+        '--d_type',
         choices=['all', 'done', 'in-progress', 'pending'],
         default="all",
         help="The type of task you want to list."
