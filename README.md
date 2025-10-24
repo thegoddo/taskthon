@@ -42,6 +42,7 @@ chmod u+x taskthon.py
 - [x] Task status
 - [x] Listing tasks
 - [x] Storing tasks
+- [ ] List Current Folder tasks (if taskthon.json exists here)
 
 ## Contributing to this project
 
