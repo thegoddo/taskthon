@@ -13,6 +13,18 @@ def main():
     match args.command:
         case 'add':
             new_id = len(tasks) + 1
+            current_time = get_timestamp()
+
+            new_task = {
+                'id': new_id,
+                'description': args.description,
+                'createAt': current_time,
+                'updateAt': current_time
+            }
+
+            tasks.append(new_task)
+            save_tasks(db_path, tasks)
+            print(f'Task added with ID: {new_id}')
 
         case 'update':
             break
