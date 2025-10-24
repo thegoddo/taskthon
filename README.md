@@ -28,7 +28,8 @@ git clone https://github.com/thegoddo/taskthon.git
 ---
 ```shell
 cd taskthon
-./taskthon
+chmod u+x taskthon.py
+./taskthon.py
 ```
 
 ## Features
