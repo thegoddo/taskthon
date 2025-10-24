@@ -16,3 +16,35 @@ def main():
     )
 
     # Add command
+    add_parser = subparsers.add_parser('add', help='Add a new task.')
+    add_parser.add_argument(
+        'description',
+        type=str,
+        help='Description of the new task.'
+    )
+
+    # Update command
+    update_parser = subparsers.add_parser('update', help='Update an existing task.')
+    update_parser.add_argument(
+        'ID',
+        type=int,
+        help='The ID of the task to update.'
+    )
+
+    update_parser.add_argument(
+        'new_description',
+        type=str,
+        help='The new description for the task.'
+    )
+
+    # Delete command
+    delete_parser = subparsers.add_parser('delete', help='Delete task'.)
+    delete_parser.add_argument(
+        'id',
+        type=int,
+        help='The ID of the task to delete.'
+    )
+
+    list_parser = subparsers.add_parser('list', help='List all tasks.')
+
+    args = parser.parse_args()
