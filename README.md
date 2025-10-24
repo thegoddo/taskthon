@@ -1,4 +1,4 @@
-# A Terminal TODO
+# Taskthon: A Terminal TODO in Python
 
 ---
 
