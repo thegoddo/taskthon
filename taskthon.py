@@ -77,7 +77,7 @@ def display_list(d_type: str, tasks: list):
 
     headers = ["ID", "Status", "Description", "Create At", "Update At"]
     table_date = []
-    new_tasks = [task for task in tasks if task['status'] != d_type]
+    new_tasks = [task for task in tasks if task['status'] == d_type]
 
     for task in new_tasks:
         create_at_short = task.get("createAt", "").replace("T", "")
@@ -91,7 +91,8 @@ def display_list(d_type: str, tasks: list):
             update_at_short
         ])
 
-        print(tabulate(table_date, headers, tablefmt="fancy_grid"))
+
+    print(tabulate(table_date, headers, tablefmt="fancy_grid"))
 
 
 
@@ -165,6 +166,7 @@ def args_parser():
     list_parser.add_argument(
         'd_type',
         choices=['all', 'done', 'in-progress', 'pending'],
+        default="all",
         help="The type of task you want to list."
     )
 
